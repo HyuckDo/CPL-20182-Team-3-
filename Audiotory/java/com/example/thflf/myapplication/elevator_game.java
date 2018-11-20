@@ -35,6 +35,8 @@ public class elevator_game extends AppCompatActivity {
     int CurFloor;
     int[] answers;
     MediaPlayer effect_sound;
+    int correctCount = 0;
+    int gameCount = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -420,6 +422,7 @@ public class elevator_game extends AppCompatActivity {
 
     private void correctF(boolean bool)
     {
+        correctCount++;
         for(int i = 0; i < 6; i++)
         {
             ansbtn[i].setVisibility(View.INVISIBLE);
@@ -457,6 +460,9 @@ public class elevator_game extends AppCompatActivity {
                 startfloortxt.clearAnimation();
                 startfloorbg.setVisibility(View.INVISIBLE);
                 startfloortxt.setVisibility(View.INVISIBLE);
+                gameCount--;
+                if (gameCount == 0)
+                    finish();
                 gameMainF(true);
             }
         },4000);
@@ -496,6 +502,9 @@ public class elevator_game extends AppCompatActivity {
                 startfloortxt.clearAnimation();
                 startfloorbg.setVisibility(View.INVISIBLE);
                 startfloortxt.setVisibility(View.INVISIBLE);
+                gameCount--;
+                if (gameCount == 0)
+                    finish();
                 gameMainF(true);
             }
         },4000);

@@ -19,6 +19,8 @@ public class animal_game extends AppCompatActivity {
     int answer;
     int animallist[] = new int[7];
     MediaPlayer effect_sound;
+    int correctCount = 0;
+    int gameCount = 5;
     final static int CAT = 0;
     final static int CHICK = 1;
     final static int COW = 2;
@@ -179,6 +181,12 @@ public class animal_game extends AppCompatActivity {
                 }
             }
         },300);
+
+        new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {falseF();
+        }
+    },3300);
     }
 
     private void  correctF()
@@ -186,6 +194,10 @@ public class animal_game extends AppCompatActivity {
         effect_sound.stop();
         effect_sound = MediaPlayer.create(this, R.raw.o);
         effect_sound.start();
+        gameCount--;
+        if (gameCount == 0)
+            finish();
+        gameMainF(true);
     }
 
     private void  falseF()
@@ -193,5 +205,9 @@ public class animal_game extends AppCompatActivity {
         effect_sound.stop();
         effect_sound = MediaPlayer.create(this, R.raw.x);
         effect_sound.start();
+        gameCount--;
+        if (gameCount == 0)
+            finish();
+        gameMainF(true);
     }
 }
